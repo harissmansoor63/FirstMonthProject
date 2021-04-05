@@ -1,0 +1,59 @@
+<h1>Listing articles</h1>
+ 
+<%= link_to 'New article', new_article_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th></th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Destroy', article_path(article),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+  <%
+=begin%>
+ <%= render @articles %> 
+<%
+=end%>
+
+ <%
+=begin%>
+ <h3>selecting any post from below</h3> 
+<%
+=end%>
+
+
+ 
+ 
+ <%
+=begin%>
+ <%= select_tag (Article.all.collect {|a| [a.title, a.text]}, {include_blank: true})%>    
+<%
+=end%>
+
+
+
+
+
+
+  <%
+=begin%>
+ <% @articles.each do |article| %>
+    <%=text_field(:article, :title)%>
+   
+  <% end %> 
+<%
+=end%>
+
+</table>

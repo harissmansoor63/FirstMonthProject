@@ -1,0 +1,163 @@
+
+
+<%
+=begin%>
+ <% @article.comments.each do |com| %>
+    <%= render partial: "comments/comment", object: com, as: 'comment' %>
+  <% end %> 
+<%
+=end%>
+
+<%= javascript_include_tag "/javascript/common" %>
+
+
+<button type="button" onclick="my_function()">Try it</button>
+
+<%
+=begin%>
+ <%= render partial: 'comments/comment', layout: 'box', locals: { comment: comment } %> 
+<%
+=end%>
+
+<img src= <%= image_path ('picture.jpeg') %> width="300" height="300" > 
+
+<%
+=begin%>
+ javascript_include_tag "common" # => <script src="/assets/common.js"></script> 
+<%
+=end%>
+
+<img src= <%image_tag("picture.jpeg")%>>  
+
+
+
+
+<link rel="hello.css" href="hello.css">
+
+ <%
+=begin%>
+ <img src= <%= image_url ('Top-10-Plants-That-Make-You-Happy-main.png') %> width="300" height="300">  
+<%
+=end%>
+
+<%
+=begin%>
+ <!-- >=> <img src="/assets/icon.png" alt="Icon" /> --> 
+<%
+=end%>
+
+
+
+<% @greeting = capture do %>
+  <p>Welcome! The date and time is <%= Time.now %></p>
+<% end %>
+
+<%= render 'article'%>
+
+
+
+<h2> <%= @greeting %> </h2>
+
+
+
+<%=select_datetime(Time.now + 4.days)%> 
+
+<!-- <%= distance_of_time_in_words(Time.now, Time.now + 15.seconds) %> -->
+
+<%= time_ago_in_words(3.minutes.from_now)%>
+
+<%= select_tag "people", ["David","Peter"] %>
+
+
+<%= form_for @article, url: { action: "create" }, method: :post do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_field :text %>
+  <%= submit_tag 'Create' %>
+<% end %>
+
+<%= label_tag do %>
+CHECKBOXXX
+  <%= check_box_tag 'category[]', '1', false %>
+  
+<% end %>
+
+<%= label_tag do %>
+PASSWORDDD
+<%= password_field(:login, :pass)%>
+<% end %>
+
+
+
+<%
+=begin%>
+ <%= field_set_tag do %>
+  <p><%= text_field_tag 'name' %></p>
+<% end %> 
+<%
+=end%>
+
+<%
+=begin%>
+ <%= form_tag '/articles' do %>
+  <div><%= submit_tag 'Save' %></div>
+<% end %> 
+<%
+=end%>
+
+
+<%= hidden_field_tag 'token', 'VUBJKB23UIVI1UU1VOBVI@' %>
+
+<%= radio_button_tag 'gender', 'male'%>
+
+
+<%= javascript_tag "alert('All is good')"%>
+
+<%=   number_to_phone(1235551234) %>
+
+<%
+=begin%>
+ <%= sanitize @article.title%> 
+<%
+=end%>
+
+
+
+
+
+<%
+=begin%>
+ <%= image_submit_tag("picture.jpeg")%> 
+<%
+=end%>
+
+
+<body>
+<%= yield :special_script %>
+</body>
+
+
+<!-- <%= puts ("HIIIIIIIIIIIII")%> -->
+
+
+ <%= render partial: @article.comments, layout: 'box'%> 
+
+
+
+
+
+ 
+
+
+
+<%= stylesheet_link_tag "application", :media => "all" %>
+
+
+<h2>Comments</h2>
+<%= render @article.comments %>
+
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
